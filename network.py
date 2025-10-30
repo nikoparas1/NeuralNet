@@ -63,7 +63,7 @@ class Network:
         s1 = activation.init_scale(input_size, hidden_size)  # relu or sigmoid
         s2 = glorot_std(hidden_size, output_size)  # softmax
 
-        self.W1 = np.random.rand(input_size, hidden_size) * s1
+        self.W1 = np.random.randn(input_size, hidden_size) * s1
         self.b1 = np.zeros((1, hidden_size))
         self.W2 = np.random.randn(hidden_size, output_size) * s2
         self.b2 = np.zeros((1, output_size))
