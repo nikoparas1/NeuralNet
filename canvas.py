@@ -65,10 +65,7 @@ class DrawingWidget(object):
         else:
             raise ValueError("dtype must be 'float32' or 'uint8'")
 
-        flat = (img.astype(np.float32) if img.dtype != np.float32 else img).reshape(
-            1, -1
-        )
-        return img, flat
+        return img
 
     def init_canvas(self, width, height):
         self.canvas = MultiCanvas(
@@ -113,12 +110,12 @@ class DrawingWidget(object):
         def _do_predict(_):
             if on_predict is None:
                 return
-            img, flat = self.get_image_data(mnist=True, size=28, dtype="float32")
+            img = self.get_image_data(mnist=True, size=28, dtype="float32")
             with self._pred_out:
                 from IPython.display import clear_output
 
                 clear_output()
-                on_predict(img, flat)
+                on_predict(img)
 
         predict_button.on_click(_do_predict)
 
